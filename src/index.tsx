@@ -10,16 +10,13 @@ import {
   gql,
 } from "@apollo/client";
 
-const root = ReactDOM.createRoot(
-  document.getElementById("root") as HTMLElement
-);
-
+// ApolloClientのインスタンスを作成
 const client = new ApolloClient({
   uri: "https://flyby-router-demo.herokuapp.com/",
   cache: new InMemoryCache(),
 });
-// const client = ...
 
+// GraphQLクエリの実行
 client
   .query({
     query: gql`
@@ -35,12 +32,15 @@ client
   })
   .then((result) => console.log(result));
 
+const root = ReactDOM.createRoot(
+  document.getElementById("root") as HTMLElement
+);
+
 root.render(
   <ApolloProvider client={client}>
     <App />
   </ApolloProvider>
 );
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+
+// Webアプリのパフォーマンス監視出来るらしい
 reportWebVitals();
